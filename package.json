@@ -1,8 +1,8 @@
 {
-  "name": "themekit-webpack-tailwind",
+  "name": "isc-record-club-theme",
   "version": "1.0.0",
   "description": "Shopify Themekit with Webpack & Tailwind CSS",
-  "author": "Chase Ohlson",
+  "author": "Discipline",
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
