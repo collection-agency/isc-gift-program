@@ -1,6 +1,5 @@
 const product = {
   init: () => {
-    console.log($('.fill-hidden').length);
     if ($('.multi-input').length) {
       product.bindMulti();
     }

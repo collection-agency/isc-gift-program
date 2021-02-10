@@ -1,8 +1,8 @@
 <header class="bg-green-pale py-5 font-heading">
-  <div class="container mx-auto">
-    <div class="flex -mx-4 px-4 items-center">
+  <div class="container mx-auto relative z-20">
+    <div class="hidden md:flex -mx-4 px-4 items-center">
       <div class="px-4 w-1/2">
-        <a href="/"><img src="{{ 'ischifi-logo.svg' | asset_url }}" class="hidden md:block w-20" alt="ISCHifi"/><img src="{{ 'ischifi-logo-mobile.svg' | asset_url }}" class="block md:hidden w-24" alt="ISCHifi"/></a>
+        <a href="/"><img src="{{ 'ischifi-logo.svg' | asset_url }}" class="inline-block w-20 -mt-2" alt="ISCHifi"/><span class="inline-block font-heading text-xl">&nbsp;Record Club</span></a>
       </div>
 
       <div class="flex flex-wrap md:flex-no-wrap md:w-1/2 text-sm md:text-base">
@@ -14,5 +14,35 @@
         </div>
       </div>
     </div>
+
+    <div class="flex md:hidden -mx-4 px-4 items-center justify-between">
+      <div class="px-4 w-1/2">
+        <a href="/"><img src="{{ 'ischifi-logo-mobile.svg' | asset_url }}" class="block w-24" alt="ISCHifi"/></a>
+      </div>
+      <div class="px-4">
+        <a href="/cart"><img src="{% if cart.item_count > 0 %}{{ 'shopping-cart-full.svg' | asset_url }}{% else %}{{ 'shopping-cart-empty.svg' | asset_url }}{% endif %}" class="inline-block w-6 md:w-6 ml-6" alt="Cart"/> ({{ cart.item_count }})</a>
+      </div>
+      <div class="px-4">
+        <img src="{{ 'mobile-nav-icon.svg' | asset_url }}" class="mobile-nav-toggle mobile-nav-icon w-10" />
+        <img src="{{ 'mobile-nav-icon-active.svg' | asset_url }}" class="mobile-nav-toggle mobile-nav-icon-active w-10" />
+      </div>
+    </div>
   </div>
 </header>
+
+<div id="mobile-nav" class="inset-0 fixed z-10 bg-brown-pale md:hidden">
+  <div class="absolute inset-0 pt-24 flex flex-col text-6xl font-heading">
+    <div class="px-4 mb-10">
+      <a href="/">Record Club<br> Home</a>
+    </div>
+    <!--div class="px-4 mb-10">
+      <a href="/">FAQ</a>
+    </div-->
+    <div class="px-4">
+      <a href="https://insheepsclothinghifi.com/">
+        <span class="block font-basic text-base">Back to</span>
+        ISCHiFi
+      </a>
+    </div>
+  </div>
+</div>

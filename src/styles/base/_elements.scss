@@ -5,3 +5,24 @@ body, html {
 *:focus {
   @apply outline-none ring-2 ring-yellow-500;
 }
+
+.mobile-nav-icon,
+body.mobile-nav-active .mobile-nav-icon-active {
+  @apply block;
+}
+
+.mobile-nav-icon-active,
+body.mobile-nav-active .mobile-nav-icon {
+  @apply hidden;
+}
+
+body.mobile-nav-active #mobile-nav {
+  @apply opacity-100;
+  transform: scale(1);
+}
+
+#mobile-nav {
+  @apply opacity-0 transition;
+  transform: scale(.9);
+  transform-origin: center;  
+}
