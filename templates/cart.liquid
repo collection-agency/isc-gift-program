@@ -1,7 +1,7 @@
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
     <section class="mb-20">
-      <div class="flex flex-wrap md:flex-nowrap -mx-4 px-4 mb-12 font-heading">
+      <div class="hidden md:flex flex-nowrap -mx-4 px-4 mb-12 font-heading">
         <div class="px-4 w-36 lg:ml-56 flex-grow">Item</div>
         <div class="px-4 w-1/6">Qty</div>
         <div class="px-4 w-1/6 xl:w-1/3">Subtotal</div>
@@ -9,12 +9,12 @@
       <div>
         {% for item in cart.items %}
           <div class="flex flex-wrap md:flex-nowrap -mx-4 px-4 mb-8">
-            <div class="px-4 w-36 lg:w-56 flex-shrink-0">
+            <div class="px-4 w-1/3 md:w-36 lg:w-56 flex-shrink-0">
               <a href="{{ item.url | within: collections.all }}">
                 <img src="{{ item | img_url: '300x' }}" alt="{{ item.title | escape }}">
               </a>
             </div>
-            <div class="px-4 flex-grow">
+            <div class="px-4 w-2/3 md:w-auto md:flex-grow">
               <div
                 <a href="{{ item.url }}">{{ item.product.title }}</a>
                 <span class="block">{{ item.variant.title }}</span>
@@ -22,7 +22,7 @@
               <div class="mb-4">
                 <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="underline text-xs">Remove</a>
               </div>
-              <ul>
+              <ul class="hidden md:block">
                 {% for property in item.properties %}
                   <li class="mb-2 flex flex-wrap lg:flex-nowrap">
                     <span class="text-xs uppercase w-full lg:w-1/5 mt-1 flex-shrink-0">{{ property.first }}</span>
@@ -30,11 +30,29 @@
                   </li>
                 {% endfor %}
               </ul>
+              <div class="md:hidden flex my-2">
+                <div class='w-1/2'><span class="font-heading">Qty</span></div>
+                <div>
+                  <input class="w-12 p-2 rounded-sm -mt-2" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+                </div>
+              </div>
+              <div class="md:hidden flex my-2">
+                <div class='w-1/2'><span class="font-heading">Subtotal</span></div>
+                <div><span>{{ item.price | money }}</span></div>
+              </div>
             </div>
-            <div class="px-4 w-1/6 flex-shrink-0">
+            <ul class="block w-full px-4 md:hidden mt-4">
+              {% for property in item.properties %}
+                <li class="mb-2 flex flex-wrap lg:flex-nowrap">
+                  <span class="text-xs uppercase w-full lg:w-1/5 mt-1 flex-shrink-0">{{ property.first }}</span>
+                  <span class="flex-grow">{{ property.last }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+            <div class="px-4 hidden md:block md:w-1/6 flex-shrink-0">
               <input class="w-12 p-2 rounded-sm -mt-2" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
             </div>
-            <div class="px-4 w-1/6 xl:w-1/3 flex-shrink-0">
+            <div class="px-4 hidden md:block md:w-1/6 xl:w-1/3 flex-shrink-0">
               <span>{{ item.price | money }}</span>
             </div>
           </div>
@@ -42,11 +60,11 @@
       </div>
     </section>
     <section class="border-t border-gray-500 pt-20">
-      <div class="flex flex-wrap -mx-4 px-4 mb-12 justify-end">
-        <div class="w-1/6 px-4">
+      <div class="flex -mx-4 px-4 mb-12 justify-end">
+        <div class="w-1/3 md:w-1/6 px-4">
           <span class="font-heading">Cart Subtotal</span>
         </div>
-        <div class="w-1/6 xl:w-1/3 px-4">
+        <div class="w-1/3 md:w-1/6 xl:w-1/3 px-4">
           <span>{{ cart.total_price | money }}</span>
         </div>
       </div>
