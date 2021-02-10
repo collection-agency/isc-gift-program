@@ -1,46 +1,63 @@
 {% if cart.item_count > 0 %}
-  <h1>cart</h1>
   <form action="/cart" method="post" novalidate>
-    <table>
-      <thead>
-        <th colspan="2">Prod</th>
-        <th>Price</th>
-        <th>Qty</th>
-        <th>total</th>
-      </thead>
-      <tbody>
+    <section class="mb-20">
+      <div class="flex flex-wrap md:flex-nowrap -mx-4 px-4 mb-12 font-heading">
+        <div class="px-4 w-36 lg:ml-56 flex-grow">Item</div>
+        <div class="px-4 w-1/6">Qty</div>
+        <div class="px-4 w-1/6 xl:w-1/3">Subtotal</div>
+      </div>
+      <div>
         {% for item in cart.items %}
-          <tr>
-            <td>
+          <div class="flex flex-wrap md:flex-nowrap -mx-4 px-4 mb-8">
+            <div class="px-4 w-36 lg:w-56 flex-shrink-0">
               <a href="{{ item.url | within: collections.all }}">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                <img src="{{ item | img_url: '300x' }}" alt="{{ item.title | escape }}">
               </a>
-            </td>
-            <td>
-              <a href="{{ item.url }}">{{ item.product.title }}</a>
-              {{ item.variant.title }}
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
-            </td>
-            <td>{{ item.price | money }}</td>
-            <td>
-              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-            </td>
-            <td>
-              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
-              {{ item.line_price | money }}
-              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
-            </td>
-          </tr>
+            </div>
+            <div class="px-4 flex-grow">
+              <div
+                <a href="{{ item.url }}">{{ item.product.title }}</a>
+                <span class="block">{{ item.variant.title }}</span>
+              </div>
+              <div class="mb-4">
+                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="underline text-xs">Remove</a>
+              </div>
+              <ul>
+                {% for property in item.properties %}
+                  <li class="mb-2 flex flex-wrap lg:flex-nowrap">
+                    <span class="text-xs uppercase w-full lg:w-1/5 mt-1 flex-shrink-0">{{ property.first }}</span>
+                    <span class="flex-grow">{{ property.last }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="px-4 w-1/6 flex-shrink-0">
+              <input class="w-12 p-2 rounded-sm -mt-2" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+            </div>
+            <div class="px-4 w-1/6 xl:w-1/3 flex-shrink-0">
+              <span>{{ item.price | money }}</span>
+            </div>
+          </div>
         {% endfor %}
-      </tbody>
-    </table>
-    <div>
-      <p>sub total : {{ cart.total_price | money }}</p>
-      <button type="submit" name="update">Update</button>
-      <button type="submit" name="checkout">Checkout</button>
-    </div>
+      </div>
+    </section>
+    <section class="border-t border-gray-500 pt-20">
+      <div class="flex flex-wrap -mx-4 px-4 mb-12 justify-end">
+        <div class="w-1/6 px-4">
+          <span class="font-heading">Cart Subtotal</span>
+        </div>
+        <div class="w-1/6 xl:w-1/3 px-4">
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+      </div>
+      <div class="flex -mx-4 px-4 mb-12 justify-end">
+        <div class="px-4 lg:w-2/5 xl:w-1/2">
+          <button class="mr-8" type="submit" name="update">Update</button>
+          <button type="submit" name="checkout">Proceed to Checkout</button>
+        </div>
+      </div>
+    </section>
   </form>
 {% else %}
-  <h2>cart</h2>
-  Cart is empty
+  <div class="px-4 mb-40"><span>Your Record Club Cart is empty.</span></div>
 {% endif %}

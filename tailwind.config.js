@@ -6,7 +6,7 @@ module.exports = {
     standardFontWeights: true,
   },
   purge: {
-    enabled: true,
+    enabled: false,
     layers: ["components", "utilities"],
     content: [
       "./snippets/*.liquid",
@@ -16,7 +16,23 @@ module.exports = {
     ],
   },
   theme: {
-    extend: {},
+    fontFamily: {
+      'basic': ['ROM', 'sans-serif'],
+      'heading': ['ROM Condensed', 'sans-serif'],
+    },
+    extend: {
+      colors: {
+        green: {
+          pale: '#EEF4EC',
+        },
+        brown: {
+          pale: '#E2D7BF',
+        },
+      },
+      borderRadius: {
+        xl: '1.5rem',
+      },
+    },
   },
   variants: {},
   plugins: [],

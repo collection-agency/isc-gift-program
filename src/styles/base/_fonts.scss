@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'ROM';
+  src: url('../fonts/ROM-Medium.woff2') format('woff2'),
+      url('../fonts/ROM-Medium.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ROM Condensed';
+  src: url('../fonts/ROMCondensed-Medium.woff2') format('woff2'),
+      url('../fonts/ROMCondensed-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ROM';
+  src: url('../fonts/ROM-Light.woff2') format('woff2'),
+      url('../fonts/ROM-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ROM Mono';
+  src: url('../fonts/ROMMono-Regular.woff2') format('woff2'),
+      url('../fonts/ROMMono-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

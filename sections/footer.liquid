@@ -1,0 +1,51 @@
+<footer class="bg-white pt-24 pb-20 md:pb-36">
+  <div class="container mx-auto">
+    <div class="flex -mx-4 px-4 content-start">
+      <div class="px-4 text-center lg:mr-20">
+        <img src="{{ 'ischifi-logo.svg' | asset_url }}" class="w-20 mb-2 block mx-auto"/>
+        <img src="{{ 'wolf-logo.svg' | asset_url }}" class="w-24 block"/>
+      </div>
+      <div class="px-4 flex-grow lg:mr-36 xl:mr-48">
+        {% render 'mailchimp' %}
+
+        <div class="w-full flex md:hidden">
+          {% if settings.instagram %}
+          <div class="mr-8 lg:mr-12 xl:mr-16 flex-shrink-0">
+            <a href="https://instagram.com/{{ settings.instagram }}"><img src="{{ 'social-instagram.png' | asset_url }}" class="w-9"/></a>
+          </div>
+          {% endif %}
+          {% if settings.facebook %}
+            <div class="mr-8 lg:mr-12 xl:mr-16 flex-shrink-0">
+              <a href="https://facebook.com/{{ settings.facebook }}"><img src="{{ 'social-facebook.png' | asset_url }}" class="w-9"/></a>
+            </div>
+          {% endif %}
+          {% if settings.twitter %}
+            <div class="mr-8 lg:mr-12 xl:mr-16 flex-shrink-0">
+              <a href="https://twitter.com/{{ settings.twitter }}"><img src="{{ 'social-twitter.png' | asset_url }}" class="w-9"/></a>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="w-full hidden md:block"><span class="text-sm">Ships from Los Angeles</span></div>
+      </div>
+      <div class="w-auto md:w-1/3 px-4 hidden md:flex">
+        {% if settings.instagram %}
+        <div class="mr-8 lg:mr-12 xl:mr-16 flex-shrink-0">
+          <a href="https://instagram.com/{{ settings.instagram }}"><img src="{{ 'social-instagram.png' | asset_url }}" class="w-9"/></a>
+        </div>
+        {% endif %}
+        {% if settings.facebook %}
+          <div class="mr-8 lg:mr-12 xl:mr-16 flex-shrink-0">
+            <a href="https://facebook.com/{{ settings.facebook }}"><img src="{{ 'social-facebook.png' | asset_url }}" class="w-9"/></a>
+          </div>
+        {% endif %}
+        {% if settings.twitter %}
+          <div class="mr-8 lg:mr-12 xl:mr-16 flex-shrink-0">
+            <a href="https://twitter.com/{{ settings.twitter }}"><img src="{{ 'social-twitter.png' | asset_url }}" class="w-9"/></a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="block md:hidden px-4 mt-24"><span class="text-sm">Ships from Los Angeles</span></div>
+  </div>
+</footer>

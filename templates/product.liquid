@@ -1,29 +1,87 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-<img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
-{% for image in product.images %}
-  <a href="{{ image.src | img_url: 'large' }}">
-    <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-  </a>
-{% endfor %}
-<h1>{{ product.title }}</h1>
-<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-  <select name="id" id="productSelect" {% if product.variants.size == 1 %}class="hidden"{% endif %}>
-    {% for variant in product.variants %}
-      {% if variant.available %}
-        <option value="{{ variant.id }}">
-          {{ variant.title }} - {{ variant.price | money_with_currency }}
-        </option>
-      {% else %}
-        <option disabled="disabled">
-          {{ variant.title }} - sold out
-        </option>
-      {% endif %}
-    {% endfor %}
-  </select>
-  {{ current_variant.price | money }}
-  <label for="Quantity">quantity</label>
-  <input type="number" id="Quantity" name="quantity" value="1" min="1">
-  <button type="submit" name="add" id="AddToCart">Add to cart</button>
-</form>
-<div>{{ product.description }}</div>
+
+<section>
+  <div class="flex flex-wrap -mx-4 px-4 justify-between">
+
+    <div class="w-2/5 mb-16 px-4 hidden md:block">
+      <img src="{{ featured_image | img_url: '900x' }}" alt="{{ featured_image.alt | escape }}">
+    </div>
+
+    <div class="md:w-1/2 mb-36 px-4">
+
+      <span class="text-4xl mb-2 block font-heading">ISC Record Club</span>
+
+      <h1 class="text-4xl mb-36">{{ product.title }}</h1>
+
+      <img class="mb-10 md:hidden" src="{{ featured_image | img_url: '640x' }}" alt="{{ featured_image.alt | escape }}">
+
+      <div class="mb-10 md:hidden">{{ product.description }}</div>
+
+      <div class="mb-20">
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+          <select name="id" id="productSelect" {% if product.variants.size == 1 %}class="hidden"{% endif %}>
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                <option value="{{ variant.id }}" selected="selected">
+                  {{ variant.title }} - {{ variant.price | money_with_currency }}
+                </option>
+              {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - sold out
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+
+          <div class="hidden">{% render 'paywhirl-plan-selector', product: product %}</div>
+
+          {% if settings.genre_options %}
+            {% assign genres = settings.genre_options | split: ", " %}
+
+            <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
+              <div class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4"><span>Genres</span></div>
+              <div class="multi-field">
+                <span class="multi-placeholder">Select 3 genres</span>
+                <div>
+                  {% for genre in genres %}
+                    <input class="multi-input" type="checkbox" id="{{ genre }}" data-hiddenid="Genres" value="{{ genre }}"><label class="multi-label" for="{{ genre }}">{{ genre }}</label>
+                  {% endfor %}
+                </div>
+                <input class="multi-hidden" type="hidden" id="Genres" name="properties[Genres]">
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
+            <label for="Records" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Records</label>
+            <textarea id="Records" name="properties[Records]" placeholder="What are some of your favorite records from the ISC collection?"></textarea>
+          </div>
+
+          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
+            <label for="Notes" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Notes</label>
+            <textarea id="Notes" name="properties[Notes]" placeholder="Please share any other pertinent information here"></textarea>
+          </div>
+
+          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
+            <label for="Gift" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Gift?</label>
+            <textarea id="Gift" name="properties[Gift]" placeholder="This item is a gift"></textarea>
+          </div>
+
+          <!--div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
+            <label for="Gift" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-sm uppercase mb-4">Gift?</label>
+            <input type="hidden" name="properties[Gift]" value="No">
+            <input id="Gift" class="custom-checkbox" type="checkbox" name="properties[Gift]" value="Yes">
+          </div-->
+
+          <div class="mb-10"><span>Price {{ current_variant.price | money }}</span></div>
+
+          <button type="submit" name="add" id="AddToCart" class="w-full md:w-1/2">Add to cart</button>
+        </form>
+      </div>
+
+      <div class="hidden md:block w-4/5 max-w-prose mb-20">{{ product.description }}</div>
+
+    </div>
+  </div>
+</section>

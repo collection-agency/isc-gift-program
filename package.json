@@ -7,7 +7,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "jquery": "^3.5.1",
-    "tailwindcss": "^1.9.2"
+    "postcss": "^8.0.9",
+    "tailwindcss": "2.0.3"
   },
   "scripts": {
     "dev": "concurrently \"yarn watch:code\" \"yarn watch:shopify\"",
@@ -28,7 +29,7 @@
     "file-loader": "^6.1.1",
     "mini-css-extract-plugin": "^1.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
-    "postcss-loader": "^4.0.4",
+    "postcss-loader": "4.2.0",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
     "stylelint": "^13.7.2",

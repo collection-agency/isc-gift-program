@@ -1,7 +1,11 @@
-.hidden {
-  visibility: hidden !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  max-width: 0;
+.indent {
+  text-indent: 2em;
+}
+
+.resize-none {
+  resize: none;
+}
+
+.placeholder-center::placeholder {
+  text-align: center;
 }

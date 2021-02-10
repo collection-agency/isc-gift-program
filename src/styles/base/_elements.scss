@@ -1,7 +1,7 @@
-input {
-  @apply shadow-xs;
+body, html {
+  @apply font-basic;
 }
 
-button {
-  @apply font-bold py-2 px-4 rounded bg-blue-500 text-white;
+*:focus {
+  @apply outline-none ring-2 ring-yellow-500;
 }
