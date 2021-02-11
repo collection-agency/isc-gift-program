@@ -1,28 +1,27 @@
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
-    <section class="mb-20">
-      <div class="hidden md:flex flex-nowrap -mx-4 px-4 mb-12 font-heading">
-        <div class="px-4 w-36 lg:ml-56 flex-grow">Item</div>
-        <div class="px-4 w-1/6">Qty</div>
-        <div class="px-4 w-1/6 xl:w-1/3">Subtotal</div>
+    <section>
+      <div class="flex -mx-4 px-4 pb-4 font-heading">
+        <div class="w-1/6 px-4"></div>
+        <div class="w-1/3 px-4">Item</div>
+        <div class="w-1/6 px-4">Price</div>
+        <div class="w-1/3 px-4"></div>
       </div>
-      <div>
+      <ul class="mb-16">
         {% for item in cart.items %}
-          <div class="flex flex-wrap md:flex-nowrap -mx-4 px-4 mb-8">
-            <div class="px-4 w-1/3 md:w-36 lg:w-56 flex-shrink-0">
+          <li class="flex -mx-4 px-4 mb-8">
+            <div class="w-1/6 px-4">
               <a href="{{ item.url | within: collections.all }}">
                 <img src="{{ item | img_url: '300x' }}" alt="{{ item.title | escape }}">
               </a>
             </div>
-            <div class="px-4 w-2/3 md:w-auto md:flex-grow">
-              <div
+
+            <div class="w-1/3 px-4">
+              <div>
                 <a href="{{ item.url }}">{{ item.product.title }}</a>
                 <span class="block">{{ item.variant.title }}</span>
               </div>
-              <div class="mb-4">
-                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="underline text-xs">Remove</a>
-              </div>
-              <ul class="hidden md:block">
+              <ul>
                 {% for property in item.properties %}
                   <li class="mb-2 flex flex-wrap lg:flex-nowrap">
                     <span class="text-xs uppercase w-full lg:w-1/5 mt-1 flex-shrink-0">{{ property.first }}</span>
@@ -30,48 +29,28 @@
                   </li>
                 {% endfor %}
               </ul>
-              <div class="md:hidden flex my-2">
-                <div class='w-1/2'><span class="font-heading">Qty</span></div>
-                <div>
-                  <input class="w-12 p-2 rounded-sm -mt-2" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-                </div>
-              </div>
-              <div class="md:hidden flex my-2">
-                <div class='w-1/2'><span class="font-heading">Subtotal</span></div>
-                <div><span>{{ item.price | money }}</span></div>
-              </div>
             </div>
-            <ul class="block w-full px-4 md:hidden mt-4">
-              {% for property in item.properties %}
-                <li class="mb-2 flex flex-wrap lg:flex-nowrap">
-                  <span class="text-xs uppercase w-full lg:w-1/5 mt-1 flex-shrink-0">{{ property.first }}</span>
-                  <span class="flex-grow">{{ property.last }}</span>
-                </li>
-              {% endfor %}
-            </ul>
-            <div class="px-4 hidden md:block md:w-1/6 flex-shrink-0">
-              <input class="w-12 p-2 rounded-sm -mt-2" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+
+            <div class="w-1/6 px-4">
+              <span>{{ item.price | money }} / month</span>
             </div>
-            <div class="px-4 hidden md:block md:w-1/6 xl:w-1/3 flex-shrink-0">
-              <span>{{ item.price | money }}</span>
+
+            <div class="w-1/3 px-4">
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="inline-block">
+                <img src="{{ 'remove-icon.svg' | asset_url }}" class="inline-block w-3 mr-1" />
+                <span class="text-xs uppercase inline-block">Remove</span>
+              </a>
             </div>
           </div>
         {% endfor %}
-      </div>
-    </section>
-    <section class="border-t border-gray-500 pt-20">
-      <div class="flex -mx-4 px-4 mb-12 justify-end">
-        <div class="w-1/3 md:w-1/6 px-4">
-          <span class="font-heading">Cart Subtotal</span>
-        </div>
-        <div class="w-1/3 md:w-1/6 xl:w-1/3 px-4">
-          <span>{{ cart.total_price | money }}</span>
-        </div>
-      </div>
-      <div class="flex -mx-4 px-4 mb-12 justify-end">
-        <div class="px-4 lg:w-2/5 xl:w-1/2">
-          <button class="mr-8" type="submit" name="update">Update</button>
-          <button type="submit" name="checkout">Proceed to Checkout</button>
+      </ul>
+      <div class="flex -mx-4 px-4 justify-end pt-16 border-t border-gray-400">
+        <div class="w-1/2 px-4">
+          <div class="mb-12">
+            <span class="font-heading mb-4 block">Subtotal</span>
+            <span>{{ cart.total_price | money }} / month</span>
+          </div>
+          <button type="submit" name="checkout" class="-ml-4">Proceed to Checkout</button>
         </div>
       </div>
     </section>
