@@ -17,12 +17,12 @@ body.mobile-nav-active .mobile-nav-icon {
 }
 
 body.mobile-nav-active #mobile-nav {
-  @apply opacity-100;
+  @apply opacity-100 pointer-events-auto;
   transform: scale(1);
 }
 
 #mobile-nav {
-  @apply opacity-0 transition;
+  @apply opacity-0 transition pointer-events-none;
   transform: scale(.9);
-  transform-origin: center;  
+  transform-origin: center;
 }

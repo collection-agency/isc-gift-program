@@ -1,7 +1,7 @@
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
-    <section>
-      <div class="flex -mx-4 px-4 pb-4 font-heading">
+    <div class="mb-36">
+      <div class="hidden lg:flex -mx-4 px-4 pb-4 font-heading">
         <div class="w-1/6 px-4"></div>
         <div class="w-1/3 px-4">Item</div>
         <div class="w-1/6 px-4">Price</div>
@@ -9,19 +9,31 @@
       </div>
       <ul class="mb-16">
         {% for item in cart.items %}
-          <li class="flex -mx-4 px-4 mb-8">
-            <div class="w-1/6 px-4">
-              <a href="{{ item.url | within: collections.all }}">
+          <li class="flex flex-wrap sm:flex-nowrap -mx-4 px-4 mb-8">
+            <div class="w-1/4 sm:w-2/6 lg:w-1/6 px-4">
+              <a href="{{ item.url }}">
                 <img src="{{ item | img_url: '300x' }}" alt="{{ item.title | escape }}">
               </a>
             </div>
 
-            <div class="w-1/3 px-4">
-              <div>
+            <div class="w-3/4 sm:w-3/6 lg:w-1/3 px-4">
+              <div class="mb-4">
                 <a href="{{ item.url }}">{{ item.product.title }}</a>
                 <span class="block">{{ item.variant.title }}</span>
               </div>
-              <ul>
+
+              <div class="lg:hidden mb-4">
+                <span>{{ item.price | money }} / month</span>
+              </div>
+
+              <div class="block sm:hidden mb-4">
+                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="inline-block">
+                  <img src="{{ 'remove-icon.svg' | asset_url }}" class="inline-block w-3 mr-1" />
+                  <span class="text-xs uppercase inline-block">Remove</span>
+                </a>
+              </div>
+
+              <ul class="text-sm sm:text-base">
                 {% for property in item.properties %}
                   <li class="mb-2 flex flex-wrap lg:flex-nowrap">
                     <span class="text-xs uppercase w-full lg:w-1/5 mt-1 flex-shrink-0">{{ property.first }}</span>
@@ -31,21 +43,21 @@
               </ul>
             </div>
 
-            <div class="w-1/6 px-4">
+            <div class="hidden lg:block w-1/6 px-4">
               <span>{{ item.price | money }} / month</span>
             </div>
 
-            <div class="w-1/3 px-4">
+            <div class="hidden sm:block sm:w-1/6 lg:w-1/3 px-4 mb-4">
               <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="inline-block">
                 <img src="{{ 'remove-icon.svg' | asset_url }}" class="inline-block w-3 mr-1" />
                 <span class="text-xs uppercase inline-block">Remove</span>
               </a>
             </div>
-          </div>
+          </li>
         {% endfor %}
       </ul>
       <div class="flex -mx-4 px-4 justify-end pt-16 border-t border-gray-400">
-        <div class="w-1/2 px-4">
+        <div class="w-3/4 sm:w-2/3 lg:w-1/2 px-4">
           <div class="mb-12">
             <span class="font-heading mb-4 block">Subtotal</span>
             <span>{{ cart.total_price | money }} / month</span>
@@ -53,7 +65,7 @@
           <button type="submit" name="checkout" class="-ml-4">Proceed to Checkout</button>
         </div>
       </div>
-    </section>
+    </div>
   </form>
 {% else %}
   <div class="px-4 mb-40"><span>Your Record Club Cart is empty.</span></div>
