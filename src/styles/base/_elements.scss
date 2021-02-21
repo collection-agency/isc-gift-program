@@ -26,3 +26,61 @@ body.mobile-nav-active #mobile-nav {
   transform: scale(.9);
   transform-origin: center;
 }
+
+.basic-text {
+  @apply max-w-prose mx-auto;
+}
+
+.basic-text h1 {
+  @apply text-6xl font-bold mb-4;
+}
+
+.basic-text h2 {
+  @apply text-3xl font-bold mb-4;
+}
+
+.basic-text h3 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.basic-text h4 {
+  @apply text-xl font-bold mb-4;
+}
+
+.basic-text h5, .basic-text h6 {
+  @apply font-bold mb-4;
+}
+
+.basic-text p {
+  @apply mb-4;
+}
+
+.basic-text a:link {
+  @apply underline;
+}
+
+.basic-text ol {
+  list-style: decimal;
+}
+
+.basic-text ul {
+  list-style: disc;
+}
+
+.basic-text ul ul {
+  list-style: circle;
+}
+
+.basic-text ul ul ul {
+  list-style: square;
+}
+
+.basic-text ol,
+.basic-text ul {
+  @apply mb-4;
+}
+
+.basic-text ol ol,
+.basic-text ul ul {
+  @apply ml-8 mb-0;
+}
