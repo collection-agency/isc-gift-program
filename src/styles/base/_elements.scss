@@ -77,10 +77,10 @@ body.mobile-nav-active #mobile-nav {
 
 .basic-text ol,
 .basic-text ul {
-  @apply mb-4;
+  @apply mb-4 ml-8;
 }
 
 .basic-text ol ol,
 .basic-text ul ul {
-  @apply ml-8 mb-0;
+  @apply mb-0;
 }

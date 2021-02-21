@@ -26,12 +26,12 @@
   {{ 'style.min.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'bundle.min.js' | asset_url }}" async></script>
 </head>
-<body class="bg-brown-pale overflow-x-hidden">
+<body class="bg-brown-pale">
   <div class="flex flex-col min-h-screen">
     {% section 'header' %}
 
     <main role="main" class="flex-grow">
-      <div class="container mx-auto pt-20">
+      <div class="container mx-auto pt-20 overflow-x-hidden">
         {{ content_for_layout }}
       </div>
     </main>
