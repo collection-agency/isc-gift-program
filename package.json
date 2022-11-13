@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "concurrently": "^7.5.0",
     "jquery": "^3.5.1",
     "postcss": "^8.0.9",
     "tailwindcss": "2.0.3"

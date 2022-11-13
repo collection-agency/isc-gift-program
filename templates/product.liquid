@@ -10,7 +10,7 @@
 
     <div class="md:w-1/2 mb-36 px-4">
 
-      <span class="text-4xl mb-2 block font-heading">ISC Record Club</span>
+      <span class="text-4xl mb-2 block font-heading">ISC Gift Program</span>
 
       <h1 class="text-4xl mb-36">{{ product.title }}</h1>
 
@@ -34,41 +34,38 @@
             {% endfor %}
           </select>
 
-          <div class="hidden">{% render 'paywhirl-plan-selector', product: product %}</div>
+          <div class="line-item-property__field required flex flex-wrap md:flex-nowrap mb-10">
+            <label for="Name" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Name</label>
+            <textarea id="Name" class="h-15" name="properties[Name]" placeholder="Gift recipient name"></textarea>
+          </div>
 
-          {% if settings.genre_options %}
-            {% assign genres = settings.genre_options | split: ", " %}
-
-            <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
-              <div class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4"><span>Genres</span></div>
-              <div class="multi-field">
-                <span class="multi-placeholder">Select your favorite genres</span>
-                <div>
-                  {% for genre in genres %}
-                    <input class="multi-input" type="checkbox" id="{{ genre }}" data-hiddenid="Genres" value="{{ genre }}"><label class="multi-label" for="{{ genre }}">{{ genre }}</label>
-                  {% endfor %}
-                </div>
-                <input class="multi-hidden" type="hidden" id="Genres" name="properties[Genres]">
-              </div>
-            </div>
-          {% endif %}
+          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
+            <label for="Address" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Address</label>
+            <textarea id="Address" class="h-15" name="properties[Address]" placeholder="Gift recipient address"></textarea>
+          </div>
 
           <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
             <label for="Records" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Records</label>
-            <textarea id="Records" class="h-40" name="properties[Records]" placeholder="What are some of your favorite records from your own record collection?"></textarea>
+            <textarea id="Records" class="h-40" name="properties[Records]" placeholder="Around how many records does the recipient own?"></textarea>
+          </div>
+
+          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
+            <label for="Concert" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Concert</label>
+            <textarea id="Concert" class="h-40" name="properties[Concert]" placeholder="What was the last concert the recipient attended or last one you went to together?"></textarea>
+          </div>
+          
+
+          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
+            <label for="Message" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Message</label>
+            <textarea id="Message" class="h-40" name="properties[Message]" placeholder="Personal message to recipient"></textarea>
           </div>
 
           <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
             <label for="Notes" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Notes</label>
-            <textarea id="Notes" class="h-40" name="properties[Notes]" placeholder="Please share any other pertinent information here"></textarea>
+            <textarea id="Notes" class="h-40" name="properties[Notes]" placeholder="Any additional information you would like to share about the recipient?"></textarea>
           </div>
 
-          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
-            <label for="Gift" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Gift</label>
-            <textarea id="Gift" class="h-40" name="properties[Gift]" placeholder="Record club subscriptions can be prepaid and gifted. If this is a gift, please leave the above sections blank and enter the email address of the recipient in this field."></textarea>
-          </div>
-
-          <div class="mb-10"><span>Price {{ current_variant.price | money }} / month</span></div>
+          <div class="mb-10"><span>Price {{ current_variant.price | money }}</span></div>
 
           <button type="submit" name="add" id="AddToCart" class="w-full md:w-1/2">Add to cart</button>
         </form>
