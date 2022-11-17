@@ -2,13 +2,13 @@
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 
 <section>
-  <div class="flex flex-wrap -mx-4 px-4 justify-between">
+  <div class="flex flex-wrap -mx-4 px-4 justify-between relative">
 
-    <div class="w-2/5 mb-16 px-4 hidden md:block">
+    <div id="product-image">
       <img src="{{ featured_image | img_url: '900x' }}" alt="{{ featured_image.alt | escape }}">
     </div>
 
-    <div class="md:w-1/2 mb-36 px-4">
+    <div id="product-details" class="md:w-1/2 md:ml-1/2 mb-36 px-4">
 
       <span class="text-4xl mb-2 block font-heading">ISC Gift Program</span>
 
@@ -34,35 +34,30 @@
             {% endfor %}
           </select>
 
-          <div class="line-item-property__field required flex flex-wrap md:flex-nowrap mb-10">
-            <label for="Name" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Name</label>
-            <textarea id="Name" class="h-15" name="properties[Name]" placeholder="Gift recipient name"></textarea>
+          <div class="line-item-property__field flex flex-col flex-wrap md:flex-nowrap mb-10">
+            <label for="Name" class="w-full flex-shrink-0 text-xs uppercase mb-4 text-center">Gift recipient name</label>
+            <textarea id="Name" class="h-15" name="properties[Name]" placeholder="First and last name"></textarea>
           </div>
 
-          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
-            <label for="Address" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Address</label>
-            <textarea id="Address" class="h-15" name="properties[Address]" placeholder="Gift recipient address"></textarea>
+          <div class="line-item-property__field flex flex-col flex-wrap md:flex-nowrap mb-10">
+            <label for="Records" class="w-full flex-shrink-0 text-xs uppercase mb-4 text-center">How many records does the recipient own?</label>
+            <textarea id="Records" class="h-40" name="properties[Records]" placeholder="50 or less, 100 or less, 100 or more, etc."></textarea>
           </div>
 
-          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
-            <label for="Records" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Records</label>
-            <textarea id="Records" class="h-40" name="properties[Records]" placeholder="Around how many records does the recipient own?"></textarea>
-          </div>
-
-          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
-            <label for="Concert" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Concert</label>
-            <textarea id="Concert" class="h-40" name="properties[Concert]" placeholder="What was the last concert the recipient attended or last one you went to together?"></textarea>
+          <div class="line-item-property__field flex flex-col flex-wrap md:flex-nowrap mb-10">
+            <label for="Concert" class="w-full flex-shrink-0 text-xs uppercase mb-4 text-center">Last concert the recipient attended or last one you went to together?</label>
+            <textarea id="Concert" class="h-40" name="properties[Concert]" placeholder="If you don’t know, feel free to ask them or leave this section blank"></textarea>
           </div>
           
 
-          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
-            <label for="Message" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Message</label>
-            <textarea id="Message" class="h-40" name="properties[Message]" placeholder="Personal message to recipient"></textarea>
+          <div class="line-item-property__field flex flex-col flex-wrap md:flex-nowrap mb-10">
+            <label for="Message" class="w-full flex-shrink-0 text-xs uppercase mb-4 text-center">Personal message to recipient</label>
+            <textarea id="Message" class="h-40" name="properties[Message]" placeholder="We’ll include this message with the vinyl package <3"></textarea>
           </div>
 
-          <div class="line-item-property__field flex flex-wrap md:flex-nowrap mb-10">
-            <label for="Notes" class="w-full md:w-1/5 w-1/6 flex-shrink-0 text-xs uppercase mb-4">Notes</label>
-            <textarea id="Notes" class="h-40" name="properties[Notes]" placeholder="Any additional information you would like to share about the recipient?"></textarea>
+          <div class="line-item-property__field flex flex-col flex-wrap md:flex-nowrap mb-10">
+            <label for="Notes" class="w-full flex-shrink-0 text-xs uppercase mb-4 text-center">Any additional information you would like to share about the recipient?</label>
+            <textarea id="Notes" class="h-40" name="properties[Notes]" placeholder="Favorite music genres, films, last vacation destination, do they like colored vinyl, any other info that might help us pick the perfect record"></textarea>
           </div>
 
           <div class="mb-10"><span>Price {{ current_variant.price | money }}</span></div>
