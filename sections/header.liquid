@@ -18,7 +18,7 @@
 
     <div class="flex lg:hidden -mx-4 px-4 items-center justify-between">
       <div class="px-4 w-1/2">
-        <a href="/"><img src="{{ 'ischifi-logo-mobile.svg' | asset_url }}" class="block w-24" alt="ISCHifi"/></a>
+        <a href="/"><img src="{{ 'ischifi-logo.svg' | asset_url }}" class="block w-24" alt="ISCHifi"/><span class="inline-block font-heading text-xl">&nbsp;Gift Program</span></a>
       </div>
       <div class="px-4">
         <a href="/cart"><img src="{% if cart.item_count > 0 %}{{ 'shopping-cart-full.svg' | asset_url }}{% else %}{{ 'shopping-cart-empty.svg' | asset_url }}{% endif %}" class="inline-block w-6 lg:w-6 ml-6" alt="Cart"/> ({{ cart.item_count }})</a>
